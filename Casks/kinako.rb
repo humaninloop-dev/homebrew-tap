@@ -9,8 +9,8 @@
 # `shasum -a 256 Kinako-<version>.zip` of the uploaded asset. The release
 # workflow does both automatically.
 cask "kinako" do
-  version "0.1.0"
-  sha256 "d3d5afae9e9b91e210ef2ab8085ca805f0ee9a46215167911a7d9f543458d5ca"
+  version "0.1.1"
+  sha256 "74611c3fce58bc531e52551df807880e6d6d9c81cf69f2ad4dd0ac4d867e75c6"
 
   # The binary is hosted on the PUBLIC homebrew-tap repo's Releases (Homebrew
   # downloads with anonymous curl, which cannot reach a private repo's assets).
