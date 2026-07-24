@@ -6,22 +6,26 @@
 # cleanly for the trusted cohort; a Developer-ID + notarized build removes the need.
 #
 # On each release, bump `version` and replace `sha256` with the real
-# `shasum -a 256 Kinako-<version>.zip` of the uploaded asset.
+# `shasum -a 256 Kinako-<version>.zip` of the uploaded asset. The release
+# workflow does both automatically.
 cask "kinako" do
   version "0.1.0"
   sha256 "d3d5afae9e9b91e210ef2ab8085ca805f0ee9a46215167911a7d9f543458d5ca"
 
-  url "https://github.com/humaninloop-dev/kinako/releases/download/v#{version}/Kinako-#{version}.zip"
+  # The binary is hosted on the PUBLIC homebrew-tap repo's Releases (Homebrew
+  # downloads with anonymous curl, which cannot reach a private repo's assets).
+  # The Kinako source repo stays private; only the built .app zip is public.
+  url "https://github.com/humaninloop-dev/homebrew-tap/releases/download/v#{version}/Kinako-#{version}.zip"
   name "Kinako"
   desc "Personal second brain derived from your Claude Code sessions"
-  homepage "https://github.com/humaninloop-dev/kinako"
+  homepage "https://github.com/humaninloop-dev/homebrew-tap"
 
   # Private dogfood: no public appcast to check against yet.
   livecheck do
     skip "Private dogfood release"
   end
 
-  depends_on macos: ">= :catalina" # matches MACOSX_DEPLOYMENT_TARGET = 10.15
+  depends_on macos: :catalina # a bare symbol means ">= Catalina"; matches MACOSX_DEPLOYMENT_TARGET = 10.15
 
   # `sbx` is a hard runtime dependency (ARCHITECTURE.md). Brew auto-taps docker/tap
   # and installs the binary alongside Kinako. This covers the BINARY ONLY — Docker
