@@ -9,8 +9,8 @@
 # `shasum -a 256 Kinako-<version>.zip` of the uploaded asset. The release
 # workflow does both automatically.
 cask "kinako" do
-  version "0.1.1"
-  sha256 "74611c3fce58bc531e52551df807880e6d6d9c81cf69f2ad4dd0ac4d867e75c6"
+  version "0.1.2"
+  sha256 "cd4945297af8eca80e729c549449d16d0fec6d31f3ebc759dd8178ed1e0f572a"
 
   # The binary is hosted on the PUBLIC homebrew-tap repo's Releases (Homebrew
   # downloads with anonymous curl, which cannot reach a private repo's assets).
@@ -31,7 +31,7 @@ cask "kinako" do
   # and installs the binary alongside Kinako. This covers the BINARY ONLY — Docker
   # running + sandbox provisioned + Claude-logged-in are beyond brew's reach and are
   # verified by Kinako's in-app guided Setup readiness probe (GI-005/GI-006).
-  depends_on formula: "docker/tap/sbx"
+  depends_on cask: "docker/tap/sbx"
 
   app "Kinako.app"
 
