@@ -9,8 +9,8 @@
 # `shasum -a 256 Kinako-<version>.zip` of the uploaded asset. The release
 # workflow does both automatically.
 cask "kinako" do
-  version "0.1.2"
-  sha256 "cd4945297af8eca80e729c549449d16d0fec6d31f3ebc759dd8178ed1e0f572a"
+  version "0.2.0"
+  sha256 "d561b6cc5b98331e1f0b9ed114631acfc7e8b63ea9a847285fc746c2b09a6fea"
 
   # The binary is hosted on the PUBLIC homebrew-tap repo's Releases (Homebrew
   # downloads with anonymous curl, which cannot reach a private repo's assets).
@@ -53,7 +53,16 @@ cask "kinako" do
   # Uninstall cleanup. Kinako's OWN prefs/support/cache only — keyed to the bundle
   # id. NEVER add ~/.claude or ~/.claude.json here: those are the user's real Claude
   # Code configs (Kinako merges into them non-destructively, GI-032), not ours to zap.
+  #
+  # The "kinako" (lowercase, un-suffixed) entry is the one that matters and was
+  # MISSING until MVP-H1: LocalStoreLocation.base() writes to
+  # `~/Library/Application Support/kinako`, NOT to the bundle-id path the other
+  # entries use. Every dogfood install to date has therefore left its whole store
+  # behind on `brew uninstall --zap`. That directory now also holds the installed
+  # `bin/kinako-hook` (D-H2), so without this line an uninstall would leave a live
+  # hook binary on disk with no app.
   zap trash: [
+    "~/Library/Application Support/kinako",
     "~/Library/Application Support/dev.humaninloop.kinako",
     "~/Library/Caches/dev.humaninloop.kinako",
     "~/Library/Preferences/dev.humaninloop.kinako.plist",
