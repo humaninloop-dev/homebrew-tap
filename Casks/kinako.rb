@@ -20,8 +20,8 @@
 # survives into the published file. They are kept syntactically valid so this file passes
 # `brew style` as it stands in the repository.
 cask "kinako" do
-  version "0.4.0"
-  sha256 "c251496a551b36b5c8c0de2cf2ae8908bc7e5588c62276ffcae182d6b3cce2ac"
+  version "0.5.0"
+  sha256 "8b603003afd7c1551f488733f4d887fe57ec7d89b9e439cd555d7b30a4c206cb"
 
   # The binary is hosted on the PUBLIC homebrew-tap repo's Releases (Homebrew downloads with
   # anonymous curl, which cannot reach a private repo's assets). The Kinako source repo stays
