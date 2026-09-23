@@ -39,7 +39,7 @@ The tap keeps the previous version as a cask of its own, so the binary can go ba
 
 ```sh
 brew uninstall --cask kinako
-brew install --cask humaninloop-dev/homebrew-tap/kinako@0.3.0
+brew install --cask humaninloop-dev/tap/kinako@<previous version>
 ```
 
 Two commands, not one: both casks install the same `Kinako.app`, so the newer one has to go first.
@@ -79,3 +79,10 @@ it is worth checking you have actually set them.
 
 Capture also needs the plugin, which installs separately through Claude Code:
 [humaninloop-plugins/plugins/kinako](https://github.com/humaninloop-dev/humaninloop-plugins/tree/main/plugins/kinako).
+
+## Uninstalling
+
+`brew uninstall --zap --cask kinako` removes Kinako's own records only. It does **not** remove your
+corpus or its backups — by default `~/Documents/Kinako Corpus` and the backups folder beside it — so
+uninstalling never deletes your thinking. It does discard any captured turns still waiting in the
+spool that the app has not swept yet.
